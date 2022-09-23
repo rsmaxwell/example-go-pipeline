@@ -10,8 +10,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: gcc
-    image: gcc:latest
+  - name: golang
+    image: golang:latest
     command:
     - cat
     tty: true
