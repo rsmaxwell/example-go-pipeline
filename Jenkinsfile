@@ -17,7 +17,7 @@ pipeline {
     stage('prepare') {
       steps {
         container('tools') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project') {
             echo 'preparing the application'
             checkout([
               $class: 'GitSCM', 
@@ -37,7 +37,7 @@ pipeline {
     stage('build') {
       steps {
         container('golang') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project') {
             echo 'building the application'
             sh('./scripts/build.sh')
           }
@@ -48,7 +48,7 @@ pipeline {
     stage('test') {
       steps {
         container('tools') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project') {
             echo 'testing the application'
             sh('./scripts/test.sh')
           }
@@ -59,7 +59,7 @@ pipeline {
     stage('package') {
       steps {
         container('tools') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project') {
             echo 'packaging the application'
             sh('./scripts/package.sh')
           }
@@ -70,7 +70,7 @@ pipeline {
     stage('deploy') {
       steps {
         container('maven') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project') {
             echo 'deploying the application'
             sh('./scripts/deploy.sh')
           }
