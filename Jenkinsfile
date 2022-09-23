@@ -36,7 +36,7 @@ pipeline {
 
     stage('build') {
       steps {
-        container('golang') {
+        container('gcc') {
           dir('${env.PROJECT_DIR}') {
             echo 'building the application'
             sh('./scripts/build.sh')
