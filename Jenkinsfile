@@ -15,7 +15,7 @@ pipeline {
               $class: 'GitSCM', 
               branches: [[name: '*/main']], 
               extensions: [], 
-              userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-cpp']]
+              userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-go']]
             ])
             sh('./scripts/prepare.sh')
           }
@@ -25,7 +25,7 @@ pipeline {
 
     stage('build') {
       steps {
-        container('gcc') {
+        container('golang') {
           dir('project') {
             echo 'building the application'
             sh('./scripts/build.sh')
