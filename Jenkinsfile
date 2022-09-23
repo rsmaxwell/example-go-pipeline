@@ -25,6 +25,9 @@ pipeline {
               extensions: [], 
               userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-go']]
             ])
+            sh('pwd')
+            sh('ls -al')
+            sh('ls -al ./scripts')
             sh('./scripts/prepare.sh')
           }
         }
