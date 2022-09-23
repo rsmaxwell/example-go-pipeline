@@ -28,6 +28,8 @@ pipeline {
             sh('pwd')
             sh('ls -al')
             sh('ls -al ./scripts')
+            sh('echo $WORKSPACE')
+            sh('echo $PROJECT_DIR')
             sh('./scripts/prepare.sh')
           }
         }
