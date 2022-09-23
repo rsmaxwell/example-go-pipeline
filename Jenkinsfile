@@ -17,7 +17,7 @@ pipeline {
     stage('prepare') {
       steps {
         container('tools') {
-          dir('${env.PROJECT_DIR}') {
+          dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'preparing the application'
             checkout([
               $class: 'GitSCM', 
