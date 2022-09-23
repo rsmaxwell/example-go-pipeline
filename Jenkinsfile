@@ -17,7 +17,7 @@ pipeline {
     stage('prepare') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'preparing the application'
             checkout([
               $class: 'GitSCM', 
@@ -28,9 +28,9 @@ pipeline {
             sh('pwd')
             sh('ls -al')
             sh('ls -al ./scripts')
-            sh('echo $WORKSPACE')
-            sh('echo $PROJECT_DIR')
-            sh('tree')
+            sh('echo "WORKSPACE = $WORKSPACE"')
+            sh('echo "PROJECT_DIR = $PROJECT_DIR"')
+            sh('tree $WORKSPACE')
             sh('./scripts/prepare.sh')
           }
         }
