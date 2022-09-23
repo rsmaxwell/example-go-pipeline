@@ -33,7 +33,7 @@ pipeline {
 
     stage('build') {
       steps {
-        container('go') {
+        container('golang') {
           dir('${env.PROJECT_DIR}') {
             echo 'building the application'
             sh('./scripts/build.sh')
