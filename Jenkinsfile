@@ -4,12 +4,20 @@ pipeline {
       yamlFile 'KubernetesPod.yaml'
     }
   }
+
+  environment {
+    PROJECT_NAME = "example-go"
+    GOPATH = "${WORKSPACE}"
+    PATH = "${PATH}:${GOPATH}/bin"
+    PROJECT_DIR = "${WORKSPACE}/src/github.com/rsmaxwell/${PROJECT_NAME}"
+  }
+
   stages {
 
     stage('prepare') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'preparing the application'
             checkout([
               $class: 'GitSCM', 
@@ -17,6 +25,9 @@ pipeline {
               extensions: [], 
               userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-go']]
             ])
+            sh('pwd')
+            sh('ls -al')
+            sh('ls -al ./scripts')
             sh('./scripts/prepare.sh')
           }
         }
@@ -26,7 +37,7 @@ pipeline {
     stage('build') {
       steps {
         container('golang') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'building the application'
             sh('./scripts/build.sh')
           }
@@ -37,7 +48,7 @@ pipeline {
     stage('test') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'testing the application'
             sh('./scripts/test.sh')
           }
@@ -48,7 +59,7 @@ pipeline {
     stage('package') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'packaging the application'
             sh('./scripts/package.sh')
           }
@@ -59,7 +70,7 @@ pipeline {
     stage('deploy') {
       steps {
         container('maven') {
-          dir('project') {
+          dir('${env.PROJECT_DIR}') {
             echo 'deploying the application'
             sh('./scripts/deploy.sh')
           }
