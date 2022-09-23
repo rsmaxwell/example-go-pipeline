@@ -15,6 +15,9 @@ spec:
     command:
     - cat
     tty: true
+    volumeMounts:
+    - mountPath: /go
+      name: golang-vol
   - name: maven
     image: maven:alpine
     command:
@@ -34,3 +37,6 @@ spec:
     secret:
       secretName: maven-settings
       optional: false
+  - name: golang-vol
+    persistentVolumeClaim:
+      claimName: golang-pvc
