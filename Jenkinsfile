@@ -40,7 +40,7 @@ pipeline {
     stage('build') {
       steps {
         container('golang') {
-          dir('project') {
+          dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'building the application'
             sh('./scripts/build.sh')
           }
@@ -51,7 +51,7 @@ pipeline {
     stage('test') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'testing the application'
             sh('./scripts/test.sh')
           }
@@ -62,7 +62,7 @@ pipeline {
     stage('package') {
       steps {
         container('tools') {
-          dir('project') {
+          dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'packaging the application'
             sh('./scripts/package.sh')
           }
@@ -73,7 +73,7 @@ pipeline {
     stage('deploy') {
       steps {
         container('maven') {
-          dir('project') {
+          dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'deploying the application'
             sh('./scripts/deploy.sh')
           }
