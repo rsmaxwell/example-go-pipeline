@@ -7,9 +7,9 @@ pipeline {
 
   environment {
     PROJECT_NAME = "example-go"
-    GOPATH = "${WORKSPACE}"
+    GOPATH = "${WORKSPACE}/project"
     PATH = "${PATH}:${GOPATH}/bin"
-    PROJECT_DIR = "${WORKSPACE}/src/github.com/rsmaxwell/${PROJECT_NAME}"
+    PROJECT_DIR = "${GOPATH}/src/github.com/rsmaxwell/${PROJECT_NAME}"
   }
 
   stages {
@@ -30,6 +30,7 @@ pipeline {
             sh('ls -al ./scripts')
             sh('echo $WORKSPACE')
             sh('echo $PROJECT_DIR')
+            sh('tree')
             sh('./scripts/prepare.sh')
           }
         }
