@@ -7,9 +7,7 @@ pipeline {
 
   environment {
     PROJECT_NAME = "example-go"
-    GOPATH = "${WORKSPACE}/project"
-    PATH = "${PATH}:${GOPATH}/bin"
-    PROJECT_DIR = "${GOPATH}/src/github.com/rsmaxwell/${PROJECT_NAME}"
+    PROJECT_DIR = "${WORKSPACE}/project/src/github.com/rsmaxwell/${PROJECT_NAME}"
   }
 
   stages {
@@ -26,15 +24,15 @@ pipeline {
               userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-go']]
             ])
             sh('echo "pwd = $(pwd)"')
-            
+
             sh('echo "ls -al"')
             sh('ls -al')
-            
+
             sh('echo "ls -al ./scripts"')
             sh('ls -al ./scripts')
-            
-            sh('echo "set"')
-            sh('set')
+
+            sh('echo "PROJECT_NAME = $PROJECT_NAME"')
+            sh('echo "PROJECT_DIR  = $PROJECT_DIR"')
             sh('./scripts/prepare.sh')
           }
         }
@@ -55,15 +53,19 @@ pipeline {
             
             sh('echo "ls -al /go/bin"')
             sh('ls -al /go/bin')
-
-            sh('echo "rm -rf /go-xxx/*"')
-            sh('rm -rf /go-xxx/*')
             
             sh('echo "ls -al /go-xxx"')
             sh('ls -al /go-xxx')
 
-            sh('echo "PATH = $PATH"')
-                        
+            sh('echo "PROJECT_NAME = $PROJECT_NAME"')
+            sh('echo "PROJECT_DIR  = $PROJECT_DIR"')
+            sh('echo "GOPATH = $GOPATH"')
+            sh('echo "GOROOT = $GOROOT"')
+
+
+            sh('go version"')
+            sh('go env"')
+
             sh('./scripts/build.sh')
           }
         }
