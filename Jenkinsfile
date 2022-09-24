@@ -62,8 +62,8 @@ pipeline {
             sh('echo "GOPATH = $GOPATH"')
             sh('echo "GOROOT = $GOROOT"')
 
-
-            sh('go version"')
+            sh('which go')
+            sh('go version')
             sh('go env"')
 
             sh('./scripts/build.sh')
