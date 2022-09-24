@@ -25,9 +25,17 @@ pipeline {
               extensions: [], 
               userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-go']]
             ])
-            sh('pwd')
+            sh('echo "pwd = $(pwd)"')
+            
+            sh('echo "ls -al"')
             sh('ls -al')
+            
+            sh('echo "ls -al ./scripts"')
             sh('ls -al ./scripts')
+            
+            sh('echo "ls -al /go-xxx"')
+            sh('ls -al /go-xxx')
+            
             sh('echo "WORKSPACE = $WORKSPACE"')
             sh('echo "PROJECT_DIR = $PROJECT_DIR"')
             sh('tree $WORKSPACE')
