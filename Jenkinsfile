@@ -33,8 +33,8 @@ pipeline {
             sh('echo "ls -al ./scripts"')
             sh('ls -al ./scripts')
             
-            sh('echo "ls -al /go-xxx"')
-            sh('ls -al /go-xxx')
+            sh('echo "ls -al /"')
+            sh('ls -al /')
             
             sh('echo "WORKSPACE = $WORKSPACE"')
             sh('echo "PROJECT_DIR = $PROJECT_DIR"')
