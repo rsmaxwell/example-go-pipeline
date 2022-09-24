@@ -64,7 +64,7 @@ pipeline {
 
             sh('which go')
             sh('go version')
-            sh('go env"')
+            sh('go env')
 
             sh('./scripts/build.sh')
           }
