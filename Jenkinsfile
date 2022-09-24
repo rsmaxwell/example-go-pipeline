@@ -54,14 +54,14 @@ pipeline {
             sh('echo "ls -al /go"')
             sh('ls -al /go')
             
+            sh('echo "ls -al /go/bin"')
+            sh('ls -al /go/bin')
+
+            sh('echo "rm -rf /go-xxx/*"')
+            sh('rm -rf /go-xxx/*')
+            
             sh('echo "ls -al /go-xxx"')
             sh('ls -al /go-xxx')
-
-            sh('echo "tree -L 2 /go-xxx"')
-            sh('tree -L 2 /go-xxx')
-
-            sh('echo "tree -L 1 /go"')
-            sh('tree -L 1 /go')
 
             sh('echo "PATH = $PATH"')
                         
