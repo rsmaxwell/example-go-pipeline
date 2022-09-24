@@ -33,9 +33,8 @@ pipeline {
             sh('echo "ls -al ./scripts"')
             sh('ls -al ./scripts')
             
-            sh('echo "WORKSPACE = $WORKSPACE"')
-            sh('echo "PROJECT_DIR = $PROJECT_DIR"')
-            sh('tree $WORKSPACE')
+            sh('echo "set"')
+            sh('set')
             sh('./scripts/prepare.sh')
           }
         }
