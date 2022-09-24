@@ -33,9 +33,6 @@ pipeline {
             sh('echo "ls -al ./scripts"')
             sh('ls -al ./scripts')
             
-            sh('echo "ls -al /"')
-            sh('ls -al /')
-            
             sh('echo "WORKSPACE = $WORKSPACE"')
             sh('echo "PROJECT_DIR = $PROJECT_DIR"')
             sh('tree $WORKSPACE')
@@ -50,6 +47,10 @@ pipeline {
         container('golang') {
           dir('project/src/github.com/rsmaxwell/example-go') {
             echo 'building the application'
+            
+            sh('echo "ls -al /"')
+            sh('ls -al /')
+            
             sh('./scripts/build.sh')
           }
         }
