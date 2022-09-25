@@ -10,16 +10,13 @@ spec:
     command:
     - cat
     tty: true
-    volumeMounts:
-    - mountPath: /go
-      name: golang-vol
   - name: golang
     image: golang:latest
     command:
     - cat
     tty: true
     volumeMounts:
-    - mountPath: /go
+    - mountPath: /home/jenkins/agent/workspace/example-go-pipeline_main/project/pkg
       name: golang-vol
   - name: maven
     image: maven:alpine
