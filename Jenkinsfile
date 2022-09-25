@@ -4,6 +4,11 @@ pipeline {
       yamlFile 'KubernetesPod.yaml'
     }
   }
+
+  environment {
+    GOPATH = "/home/jenkins/agent/workspace/example-go-pipeline_main/project"
+  }
+
   stages {
 
     stage('prepare') {

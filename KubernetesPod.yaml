@@ -10,13 +10,16 @@ spec:
     command:
     - cat
     tty: true
+    volumeMounts:
+    - mountPath: /go
+      name: golang-vol
   - name: golang
     image: golang:latest
     command:
     - cat
     tty: true
     volumeMounts:
-    - mountPath: /go-xxx
+    - mountPath: /go
       name: golang-vol
   - name: maven
     image: maven:alpine
