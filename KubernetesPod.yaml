@@ -16,7 +16,7 @@ spec:
     - cat
     tty: true
     volumeMounts:
-    - mountPath: /home/jenkins/agent/workspace/example-go-pipeline_main/project/pkg
+    - mountPath: /go/pkg
       name: golang-vol
   - name: maven
     image: maven:alpine
