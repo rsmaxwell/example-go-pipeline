@@ -5,11 +5,19 @@ metadata:
   name: mypod
 spec:
   containers:
+  
   - name: tools
     image: rsmaxwell/tools:latest
     command:
     - cat
     tty: true
+
+  - name: gcc
+    image: gcc:latest
+    command:
+    - cat
+    tty: true
+
   - name: golang
     image: golang:latest
     command:
@@ -18,8 +26,9 @@ spec:
     volumeMounts:
     - mountPath: /go/pkg
       name: golang-vol
+
   - name: maven
-    image: maven:alpine
+    image: maven:3.8.6-eclipse-temurin-17
     command:
     - cat
     tty: true
@@ -29,6 +38,7 @@ spec:
     - mountPath: /root/.m2
       name: maven-settings
       readOnly: true
+
   volumes:
   - name: maven-vol
     persistentVolumeClaim:
